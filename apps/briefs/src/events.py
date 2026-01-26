@@ -47,7 +47,9 @@ class Event(BaseModel):
 
 
 def get_events(date: str = None):
-    url = f"https://meridian-production.alceos.workers.dev/events"
+    # Use MERIDIAN_API_URL env var if set, otherwise default to production
+    base_url = os.environ.get("MERIDIAN_API_URL", "https://meridian-production.alceos.workers.dev")
+    url = f"{base_url}/events"
 
     if date:
         url += f"?date={date}"
