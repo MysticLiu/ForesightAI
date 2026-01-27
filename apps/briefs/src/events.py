@@ -47,8 +47,10 @@ class Event(BaseModel):
 
 
 def get_events(date: str = None):
-    # Use MERIDIAN_API_URL env var if set, otherwise default to production
-    base_url = os.environ.get("MERIDIAN_API_URL", "https://meridian-production.alceos.workers.dev")
+    # MERIDIAN_API_URL is required - set it to your Cloudflare Worker URL
+    base_url = os.environ.get("MERIDIAN_API_URL")
+    if not base_url:
+        raise ValueError("MERIDIAN_API_URL environment variable is required. Set it to your Cloudflare Worker URL.")
     url = f"{base_url}/events"
 
     if date:

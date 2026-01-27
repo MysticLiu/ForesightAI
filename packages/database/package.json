@@ -3,11 +3,6 @@
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
-  "author": {
-    "name": "Iliane Amadou",
-    "email": "mail@iliane.xyz",
-    "url": "https://iliane.xyz"
-  },
   "publishConfig": {
     "access": "public"
   },

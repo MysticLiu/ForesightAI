@@ -32,7 +32,7 @@ const getBriefOpenGraph = (opts: { title: string; date: Date; totalArticles: num
     </div>
 
     <div style="right: 42px; bottom: 42px; position: absolute; display: flex; align-items: center">
-      <span style="margin-left: 8px; font-size: 25px; font-weight: normal; letter-spacing: normal"> news.iliane.xyz </span>
+      <span style="margin-left: 8px; font-size: 25px; font-weight: normal; letter-spacing: normal"> ForesightAI </span>
     </div>
 
     <div
@@ -87,7 +87,7 @@ const getHomeOpenGraph = () => `
         line-height: 1.4;
       "
     >
-      Meridian
+      ForesightAI
     </div>
 
     <div
@@ -106,7 +106,7 @@ const getHomeOpenGraph = () => `
         font-weight: 100;
       "
     >
-      a daily brief of everything important happening that i care about, with actual analysis beyond headlines
+      a daily brief of everything important happening, with actual analysis beyond headlines
     </div>
   </div>
 </div>`;

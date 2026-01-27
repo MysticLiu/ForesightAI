@@ -67,14 +67,14 @@ const formatDate = computed(() => {
 
 // Use useSeoMeta - Ensure data exists and provide fallbacks
 useSeoMeta({
-  title: `${briefData.value?.title?.toLowerCase() ?? 'Brief'} | meridian`,
+  title: `${briefData.value?.title?.toLowerCase() ?? 'Brief'} | ForesightAI`,
   description: `Intelligence brief for ${formatDate.value}`, // Use computed date
   ogTitle: `${briefData.value?.title ?? 'Intelligence Brief'}`,
   ogDescription: `Intelligence brief for ${formatDate.value}`, // Use computed date
   ogImage: briefData.value?.title // Check if title exists before constructing URL
     ? `${config.public.WORKER_API}/openGraph/brief?title=${encodeURIComponent(briefData.value.title)}&date=${encodeURIComponent(briefData.value.createdAt?.getTime() ?? Date.now())}&articles=${briefData.value.usedArticles ?? 0}&sources=${briefData.value.usedSources ?? 0}`
     : '/default-og-image.png', // Fallback OG image
-  ogUrl: `https://news.iliane.xyz/briefs/${slug}`, // Ensure base URL is correct
+  ogUrl: `https://foresight-ai-frontend.vercel.app/briefs/${slug}`, // Ensure base URL is correct
   twitterCard: 'summary_large_image',
 });
 </script>

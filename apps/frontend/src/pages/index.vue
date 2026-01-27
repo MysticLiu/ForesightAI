@@ -34,11 +34,11 @@ just what's happening and why it matters. no middleman deciding what reaches me.
 );
 
 useSEO({
-  title: 'home | meridian',
+  title: 'home | ForesightAI',
   description:
-    'a daily brief of everything important happening that i care about, with actual analysis beyond headlines',
+    'a daily brief of everything important happening, with actual analysis beyond headlines',
   ogImage: `${config.public.WORKER_API}/openGraph/default`,
-  ogUrl: `https://news.iliane.xyz/`,
+  ogUrl: `https://foresight-ai-frontend.vercel.app/`,
 });
 </script>
 

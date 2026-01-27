@@ -1,13 +1,8 @@
 {
-  "name": "@meridian/scrapers",
+  "name": "@foresight-ai/scrapers",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
-  "author": {
-    "name": "Iliane Amadou",
-    "email": "mail@iliane.xyz",
-    "url": "https://iliane.xyz"
-  },
   "scripts": {
     "dev": "wrangler dev",
     "test": "vitest",

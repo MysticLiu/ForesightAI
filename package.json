@@ -1,12 +1,7 @@
 {
-  "name": "meridian",
+  "name": "foresight-ai",
   "private": true,
   "license": "MIT",
-  "author": {
-    "name": "Iliane Amadou",
-    "email": "mail@iliane.xyz",
-    "url": "https://iliane.xyz"
-  },
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",

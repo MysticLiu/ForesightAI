@@ -1,9 +1,9 @@
 <script setup lang="ts">
 useSEO({
-  title: 'briefs | meridian',
+  title: 'briefs | ForesightAI',
   description: 'list of all briefs',
   ogImage: `${useRuntimeConfig().public.WORKER_API}/og/default`,
-  ogUrl: `https://news.iliane.xyz/briefs`,
+  ogUrl: `https://foresight-ai-frontend.vercel.app/briefs`,
 });
 
 const { data: briefsList, error } = await useFetch('/api/briefs');
