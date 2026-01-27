@@ -81,6 +81,9 @@ export class ProcessArticles extends WorkflowEntrypoint<Env, Params> {
       'france24.com',
     ];
 
+    // Check if browser rendering is enabled (paid feature)
+    const browserRenderingEnabled = env.ENABLE_BROWSER_RENDERING === 'true' && env.CLOUDFLARE_BROWSER_RENDERING_API_TOKEN;
+
     // Process articles with rate limiting
     const articleResults = await rateLimiter.processBatch(articles, step, async (article, domain) => {
       // Skip PDF files immediately
@@ -98,8 +101,8 @@ export class ProcessArticles extends WorkflowEntrypoint<Env, Params> {
           // start with light scraping
           let articleData: { title: string; text: string; publishedTime: string | undefined } | undefined = undefined;
 
-          // if we're from a tricky domain, fetch with browser first
-          if (trickyDomains.includes(domain)) {
+          // if browser rendering is enabled and we're from a tricky domain, fetch with browser first
+          if (browserRenderingEnabled && trickyDomains.includes(domain)) {
             const articleResult = await getArticleWithBrowser(env, article.url);
             if (articleResult.isErr()) {
               return { id: article.id, success: false, error: articleResult.error.error };
@@ -107,9 +110,14 @@ export class ProcessArticles extends WorkflowEntrypoint<Env, Params> {
             articleData = articleResult.value;
           }
 
-          // otherwise, start with fetch & then browser if that fails
+          // otherwise, start with fetch & then browser if that fails (when enabled)
           const lightResult = await getArticleWithFetch(article.url);
           if (lightResult.isErr()) {
+            // If browser rendering is disabled, just fail gracefully
+            if (!browserRenderingEnabled) {
+              return { id: article.id, success: false, error: 'light_fetch_failed_browser_disabled' };
+            }
+
             // rand jitter between .5 & 3 seconds
             const jitterTime = Math.random() * 2500 + 500;
             await step.sleep(`jitter`, jitterTime);

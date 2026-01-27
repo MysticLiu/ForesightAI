@@ -1021,7 +1021,7 @@ import requests
 
 # with headers
 latest_report = requests.get(
-        "https://meridian-production.alceos.workers.dev/last-report",
+        "${MERIDIAN_API_URL}/last-report",
         headers={
             "Authorization": f"Bearer {os.environ.get('MERIDIAN_SECRET_KEY')}"
         }
@@ -1342,7 +1342,7 @@ body = {
     "clustering_params": best_params,
 }
 
-endpoint = "https://meridian-production.alceos.workers.dev/report"
+endpoint = "${MERIDIAN_API_URL}/report"
 
 response = requests.post(
     endpoint,

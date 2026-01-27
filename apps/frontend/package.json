@@ -1,13 +1,8 @@
 {
-  "name": "@meridian/frontend",
+  "name": "@foresight-ai/frontend",
   "private": true,
   "type": "module",
   "license": "MIT",
-  "author": {
-    "name": "Iliane Amadou",
-    "email": "mail@iliane.xyz",
-    "url": "https://iliane.xyz"
-  },
   "scripts": {
     "dev": "nuxt dev",
     "build": "nuxt build",

@@ -42,13 +42,10 @@ import { SunIcon, MoonIcon } from '@heroicons/vue/20/solid';
       <div class="max-w-3xl mx-auto px-6 py-4">
         <div class="h-px w-full bg-gray-300 mb-4" />
         <p class="text-sm text-center">
-          built by
-          <strong class="underline"><NuxtLink :to="`https://iliane.xyz`">iliane</NuxtLink></strong>
-          ·
           <span
             >open source on
             <strong class="underline"
-              ><NuxtLink to="https://github.com/iliane5/meridian" target="_blank" rel="noopener noreferrer"
+              ><NuxtLink to="https://github.com/MysticLiu/ForesightAI" target="_blank" rel="noopener noreferrer"
                 >github</NuxtLink
               ></strong
             ></span

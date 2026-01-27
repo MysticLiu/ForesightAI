@@ -1,0 +1,31 @@
+# Meridian Brief Generation - Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# Core
+pandas>=2.0.0
+numpy>=1.24.0
+pydantic>=2.0.0
+python-dotenv>=1.0.0
+requests>=2.31.0
+
+# LLM / AI
+openai>=1.0.0
+google-genai>=0.3.0
+tiktoken>=0.5.0
+json-repair>=0.10.0
+retry>=0.9.2
+
+# Machine Learning (Embeddings & Clustering)
+torch>=2.0.0
+transformers>=4.30.0
+sentence-transformers>=2.2.0
+hdbscan>=0.8.33
+umap-learn>=0.5.4
+
+# Visualization (optional, for notebook exploration)
+matplotlib>=3.7.0
+seaborn>=0.12.0
+tqdm>=4.65.0
+
+# Date parsing
+python-dateutil>=2.8.2

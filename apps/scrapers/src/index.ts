@@ -5,9 +5,9 @@ export type Env = {
   SCRAPE_RSS_FEED: Workflow;
   PROCESS_ARTICLES: Workflow;
 
-  // Secrets
-  CLOUDFLARE_BROWSER_RENDERING_API_TOKEN: string;
-  CLOUDFLARE_ACCOUNT_ID: string;
+  // Secrets (optional - only needed for browser rendering, which is a paid feature)
+  CLOUDFLARE_BROWSER_RENDERING_API_TOKEN?: string;
+  CLOUDFLARE_ACCOUNT_ID?: string;
 
   DATABASE_URL: string;
 
@@ -15,6 +15,9 @@ export type Env = {
   GOOGLE_BASE_URL: string;
 
   MERIDIAN_SECRET_KEY: string;
+
+  // Feature flags
+  ENABLE_BROWSER_RENDERING?: string; // Set to "true" to enable paid browser rendering
 };
 
 export default {

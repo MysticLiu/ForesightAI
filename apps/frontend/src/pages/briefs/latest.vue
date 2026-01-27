@@ -1,10 +1,10 @@
 <script setup lang="ts">
 useSEO({
-  title: 'latest report | meridian',
+  title: 'latest report | ForesightAI',
   description:
-    'a daily brief of everything important happening that i care about, with actual analysis beyond headlines',
+    'a daily brief of everything important happening, with actual analysis beyond headlines',
   ogImage: `${useRuntimeConfig().public.WORKER_API}/og/default`,
-  ogUrl: `https://news.iliane.xyz/latest`,
+  ogUrl: `https://foresight-ai-frontend.vercel.app/latest`,
 });
 
 // redirect to the latest report

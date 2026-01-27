@@ -39,4 +39,4 @@ binding = "PROCESS_ARTICLES"
 class_name = "ProcessArticles"
 
 [env.production.vars]
-CORS_ORIGIN = "https://news.iliane.xyz"
+CORS_ORIGIN = "https://foresight-ai-frontend.vercel.app"
