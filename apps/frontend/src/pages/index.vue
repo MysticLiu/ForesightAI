@@ -8,28 +8,24 @@ const text = ref(
   `
 ## what is this?
 
-my personal intelligence agency. i built a daily brief of everything important happening that i care about, with *actual analysis* beyond headlines.
+your personal intelligence agency. ForesightAI delivers a daily brief of everything important happening in the world, with *actual analysis* beyond headlines.
 
-gives me the "what", "why", and "so what" behind global events in 15min.
+get the "what", "why", and "so what" behind global events in 15min.
 
 ### how it works
 - scrapes hundreds of news sources
-- clusters related articles
+- clusters related articles using AI
 - separates facts from disputed claims
-- spots bias patterns
-- runs targeted web searches to find context and fill knowledge gaps
 - identifies what actually matters
 - delivers one clean & engaging brief
 
-### why i built this
+### why this exists
 
-always thought it was cool how presidents get those daily briefings - everything they need to know, perfectly prepared by a team of analysts. figured *why can't i have that too*?
+presidents get daily briefings - everything they need to know, perfectly prepared by a team of analysts. now with AI, everyone can have that too.
 
-now with ai, i can. what would've required an *entire* intelligence agency now costs about *a dollar a day* in compute.
+what would've required an *entire* intelligence agency now runs on AI and open-source tools.
 
-this brief is tuned to what i care about (geopolitics, french news, tech, actual good news).
-
-just what's happening and why it matters. no middleman deciding what reaches me.
+just what's happening and why it matters. no middleman deciding what reaches you.
 `.trim()
 );
 

@@ -1,4 +1,4 @@
-import { $reports, eq, and, gte, lte, getDb } from '@meridian/database';
+import { $reports, eq, and, gte, lte, getDb } from '@foresightai/database';
 import { ensureDate, formatReportDate } from '~/server/lib/utils';
 
 interface Brief {

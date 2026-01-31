@@ -1,5 +1,5 @@
 {
-  "extends": "@meridian/typescript-config/base.json",
+  "extends": "@foresightai/typescript-config/base.json",
   "include": ["**/*.ts"],
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {

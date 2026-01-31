@@ -1021,9 +1021,9 @@ import requests
 
 # with headers
 latest_report = requests.get(
-        "${MERIDIAN_API_URL}/last-report",
+        "${FORESIGHTAI_API_URL}/last-report",
         headers={
-            "Authorization": f"Bearer {os.environ.get('MERIDIAN_SECRET_KEY')}"
+            "Authorization": f"Bearer {os.environ.get('FORESIGHTAI_SECRET_KEY')}"
         }
     )
 latest_report = latest_report.json()
@@ -1342,12 +1342,12 @@ body = {
     "clustering_params": best_params,
 }
 
-endpoint = "${MERIDIAN_API_URL}/report"
+endpoint = "${FORESIGHTAI_API_URL}/report"
 
 response = requests.post(
     endpoint,
     json=body,
-    headers={"Authorization": f"Bearer {os.environ.get('MERIDIAN_SECRET_KEY')}"},
+    headers={"Authorization": f"Bearer {os.environ.get('FORESIGHTAI_SECRET_KEY')}"},
 )
 print(response.json())
 ```

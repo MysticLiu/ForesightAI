@@ -1,6 +1,6 @@
-# Meridian - Free Tier Setup Guide
+# ForesightAI - Free Tier Setup Guide
 
-This guide walks you through setting up Meridian with **$0/month** costs using free tiers of all services.
+This guide walks you through setting up ForesightAI with **$0/month** costs using free tiers of all services.
 
 ## Prerequisites
 
@@ -14,7 +14,7 @@ This guide walks you through setting up Meridian with **$0/month** costs using f
 
 1. Go to [https://neon.tech](https://neon.tech)
 2. Sign up for a free account
-3. Create a new project (name: "meridian" or any name)
+3. Create a new project (name: "foresightai" or any name)
 4. Copy your connection string from the dashboard:
    ```
    postgresql://username:password@ep-xxx-xxx-123456.us-east-2.aws.neon.tech/neondb?sslmode=require
@@ -55,7 +55,8 @@ Save this value - you'll use it for API authentication.
 ## Step 2: Clone and Install
 
 ```bash
-cd /home/user/ForesightAI
+git clone https://github.com/MysticLiu/ForesightAI.git
+cd ForesightAI
 pnpm install
 ```
 
@@ -93,7 +94,7 @@ Create `apps/scrapers/.dev.vars`:
 DATABASE_URL="your-neon-connection-string"
 GOOGLE_API_KEY="your-gemini-api-key"
 GOOGLE_BASE_URL="https://generativelanguage.googleapis.com/v1beta/openai/"
-MERIDIAN_SECRET_KEY="your-generated-secret"
+FORESIGHTAI_SECRET_KEY="your-generated-secret"
 ```
 
 ### 3.4 Python Briefs
@@ -105,8 +106,8 @@ cp apps/briefs/.env.example apps/briefs/.env
 Edit `apps/briefs/.env`:
 ```env
 GOOGLE_API_KEY="your-gemini-api-key"
-MERIDIAN_SECRET_KEY="your-generated-secret"
-MERIDIAN_API_URL="http://localhost:8787"
+FORESIGHTAI_SECRET_KEY="your-generated-secret"
+FORESIGHTAI_API_URL="http://localhost:8787"
 ```
 
 ---
@@ -148,7 +149,7 @@ This starts the worker at `http://localhost:8787`
 ### Terminal 2: Start Frontend
 
 ```bash
-pnpm dev --filter=@meridian/frontend
+pnpm dev --filter=@foresight-ai/frontend
 ```
 
 This starts the frontend at `http://localhost:3000`
@@ -215,29 +216,23 @@ Or use VS Code with the Jupyter extension.
 
 ---
 
-## Deployment (Optional)
+## Deployment (GitHub Actions - Automatic)
 
-### Deploy Scrapers to Cloudflare
+The easiest way to deploy is using GitHub Actions. Add these secrets to your repository:
 
-```bash
-cd apps/scrapers
+1. Go to GitHub → Settings → Secrets and variables → Actions
+2. Add these secrets:
 
-# Set production secrets
-wrangler secret put DATABASE_URL
-wrangler secret put GOOGLE_API_KEY
-wrangler secret put GOOGLE_BASE_URL
-wrangler secret put MERIDIAN_SECRET_KEY
+| Secret Name | Value |
+|-------------|-------|
+| `DATABASE_URL` | Your Neon connection string |
+| `GOOGLE_API_KEY` | Your Gemini API key |
+| `GOOGLE_BASE_URL` | `https://generativelanguage.googleapis.com/v1beta/openai/` |
+| `FORESIGHTAI_SECRET_KEY` | Your generated secret |
+| `CLOUDFLARE_ACCOUNT_ID` | From Cloudflare dashboard |
+| `CLOUDFLARE_API_TOKEN` | Create in Cloudflare → API Tokens |
 
-# Deploy
-wrangler deploy --env production
-```
-
-### Deploy Frontend
-
-The frontend can be deployed to:
-- **Cloudflare Pages** (free)
-- **Vercel** (free tier)
-- **Netlify** (free tier)
+3. Push to `main` branch - deployment happens automatically!
 
 ---
 

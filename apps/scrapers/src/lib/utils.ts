@@ -1,6 +1,6 @@
 import { Env } from '../index';
 import { ResultAsync } from 'neverthrow';
-import { getDb as getDbFromDatabase } from '@meridian/database';
+import { getDb as getDbFromDatabase } from '@foresightai/database';
 import { Context } from 'hono';
 import { HonoEnv } from '../app';
 
@@ -52,7 +52,7 @@ export function cleanUrl(url: string) {
 
 export function hasValidAuthToken(c: Context<HonoEnv>) {
   const auth = c.req.header('Authorization');
-  if (auth === undefined || auth !== `Bearer ${c.env.MERIDIAN_SECRET_KEY}`) {
+  if (auth === undefined || auth !== `Bearer ${c.env.FORESIGHTAI_SECRET_KEY}`) {
     return false;
   }
   return true;

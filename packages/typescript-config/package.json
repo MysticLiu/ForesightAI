@@ -1,5 +1,5 @@
 {
-  "name": "@foresight-ai/typescript-config",
+  "name": "@foresightai/typescript-config",
   "version": "0.0.0",
   "private": true,
   "publishConfig": {

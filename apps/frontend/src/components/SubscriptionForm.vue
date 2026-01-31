@@ -1,6 +1,6 @@
 <script setup lang="ts">
-const COOKIE_NAME = 'meridian_subscribed';
-const LEGACY_STORAGE_KEY = 'meridian_subscribed';
+const COOKIE_NAME = 'foresightai_subscribed';
+const LEGACY_STORAGE_KEY = 'foresightai_subscribed';
 
 // Subscription state
 const email = ref('');

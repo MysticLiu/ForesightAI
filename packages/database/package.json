@@ -1,5 +1,5 @@
 {
-  "name": "@meridian/database",
+  "name": "@foresightai/database",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -21,7 +21,7 @@
     "postgres": "^3.4.5"
   },
   "devDependencies": {
-    "@meridian/typescript-config": "workspace:*",
+    "@foresightai/typescript-config": "workspace:*",
     "@types/node": "^22.13.14",
     "drizzle-kit": "^0.30.6",
     "typescript": "^5.8.2"

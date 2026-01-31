@@ -1,5 +1,5 @@
 import getArticleAnalysisPrompt, { articleAnalysisSchema } from '../prompts/articleAnalysis.prompt';
-import { $articles, and, eq, gte, isNull, sql } from '@meridian/database';
+import { $articles, and, eq, gte, isNull, sql } from '@foresightai/database';
 import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { Env } from '../index';
 import { generateObject } from 'ai';

@@ -65,27 +65,14 @@ jobs:
             GOOGLE_BASE_URL
             GOOGLE_API_KEY
             DATABASE_URL
-            MERIDIAN_SECRET_KEY
+            FORESIGHTAI_SECRET_KEY
         env:
           GOOGLE_BASE_URL: ${{ secrets.GOOGLE_BASE_URL }}
           GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          MERIDIAN_SECRET_KEY: ${{ secrets.MERIDIAN_SECRET_KEY }}
+          FORESIGHTAI_SECRET_KEY: ${{ secrets.FORESIGHTAI_SECRET_KEY }}
 
       - name: Build Nuxt Application
-        run: pnpm build --filter=@meridian/frontend # Or 'yarn generate', ensure this matches your static build script in package.json (npx nuxi generate)
+        run: pnpm build --filter=@foresightai/frontend
         env:
           NUXT_DATABASE_URL: ${{ secrets.DATABASE_URL }}
-
-      # - name: Publish to Cloudflare Pages
-      #   uses: cloudflare/wrangler-action@v3 # Use the official Cloudflare Wrangler action
-      #   with:
-      #     apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }} # Use the secret token
-      #     accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }} # Use the secret account ID
-      #     command: pages deploy apps/frontend/dist --project-name=meridian-frontend --branch=main
-      #     secrets: |
-      #       NUXT_DATABASE_URL
-      #   env:
-      #     NUXT_DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      # Replace YOUR_CLOUDFLARE_PAGES_PROJECT_NAME with the actual name from Step 3
-      # The --branch flag tells Cloudflare which production branch this deployment corresponds to

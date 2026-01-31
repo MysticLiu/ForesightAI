@@ -1,5 +1,5 @@
 #:schema node_modules/wrangler/config-schema.json
-name = "meridian"
+name = "foresightai"
 main = "src/index.ts"
 compatibility_date = "2025-02-14"
 compatibility_flags = [ "nodejs_compat" ]
@@ -9,12 +9,12 @@ enabled = true
 head_sampling_rate = 1 # optional. default = 1.
 
 [[workflows]]
-name = "meridian_scrape_rss_feed"
+name = "foresightai_scrape_rss_feed"
 binding = "SCRAPE_RSS_FEED"
 class_name = "ScrapeRssFeed"
 
 [[workflows]]
-name = "meridian_process_articles"
+name = "foresightai_process_articles"
 binding = "PROCESS_ARTICLES"
 class_name = "ProcessArticles"
 
@@ -24,17 +24,16 @@ CORS_ORIGIN = "http://127.0.0.1:3000"
 [triggers]
 # Schedule cron triggers:
 # - Every hour (at minute 4)
-# - At 07:08 (UTC) every day
 crons = [ "4 * * * *" ]
 
 [env.production]
 [[env.production.workflows]]
-name = "meridian-production-rss-scraper"
+name = "foresightai-production-rss-scraper"
 binding = "SCRAPE_RSS_FEED"
 class_name = "ScrapeRssFeed"
 
 [[env.production.workflows]]
-name = "meridian-production-article-processor"
+name = "foresightai-production-article-processor"
 binding = "PROCESS_ARTICLES"
 class_name = "ProcessArticles"
 

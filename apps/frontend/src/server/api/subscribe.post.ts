@@ -1,6 +1,6 @@
 import MailerLite from '@mailerlite/mailerlite-nodejs';
-import { getDb } from '@meridian/database';
-import { $newsletter } from '@meridian/database';
+import { getDb } from '@foresightai/database';
+import { $newsletter } from '@foresightai/database';
 import { z } from 'zod';
 
 export default defineEventHandler(async event => {

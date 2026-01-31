@@ -20,6 +20,9 @@ importers:
 
   apps/frontend:
     devDependencies:
+      '@foresightai/database':
+        specifier: workspace:*
+        version: link:../../packages/database
       '@headlessui/vue':
         specifier: ^1.7.23
         version: 1.7.23(vue@3.5.13(typescript@5.8.2))
@@ -29,9 +32,6 @@ importers:
       '@mailerlite/mailerlite-nodejs':
         specifier: ^1.4.0
         version: 1.4.0
-      '@meridian/database':
-        specifier: workspace:*
-        version: link:../../packages/database
       '@nuxtjs/color-mode':
         specifier: 3.5.2
         version: 3.5.2(magicast@0.3.5)
@@ -89,12 +89,12 @@ importers:
       '@cloudflare/puppeteer':
         specifier: ^0.0.15
         version: 0.0.15
+      '@foresightai/database':
+        specifier: workspace:*
+        version: link:../../packages/database
       '@hono/zod-validator':
         specifier: ^0.4.3
         version: 0.4.3(hono@4.7.4)(zod@3.24.2)
-      '@meridian/database':
-        specifier: workspace:*
-        version: link:../../packages/database
       '@mozilla/readability':
         specifier: ^0.6.0
         version: 0.6.0
@@ -148,7 +148,7 @@ importers:
         specifier: ^3.4.5
         version: 3.4.5
     devDependencies:
-      '@meridian/typescript-config':
+      '@foresightai/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@types/node':
@@ -5139,6 +5139,7 @@ packages:
   whatwg-encoding@3.1.1:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
     engines: {node: '>=18'}
+    deprecated: Use @exodus/bytes instead for a more spec-conformant and faster implementation
 
   whatwg-mimetype@4.0.0:
     resolution: {integrity: sha512-QaKxh0eNIi2mE9p2vEdzfagOKHCcj1pJ56EEHGQOVxp8r9/iszLUUV7v89x9O1p/T+NlTM5W7jW6+cz4Fq1YVg==}

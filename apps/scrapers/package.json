@@ -1,5 +1,5 @@
 {
-  "name": "@foresight-ai/scrapers",
+  "name": "@foresightai/scrapers",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -20,7 +20,7 @@
     "@ai-sdk/google": "^1.2.3",
     "@cloudflare/puppeteer": "^0.0.15",
     "@hono/zod-validator": "^0.4.3",
-    "@meridian/database": "workspace:*",
+    "@foresightai/database": "workspace:*",
     "@mozilla/readability": "^0.6.0",
     "ai": "^4.2.6",
     "fast-xml-parser": "^5.0.9",

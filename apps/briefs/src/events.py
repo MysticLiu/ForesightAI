@@ -47,10 +47,10 @@ class Event(BaseModel):
 
 
 def get_events(date: str = None):
-    # MERIDIAN_API_URL is required - set it to your Cloudflare Worker URL
-    base_url = os.environ.get("MERIDIAN_API_URL")
+    # FORESIGHTAI_API_URL is required - set it to your Cloudflare Worker URL
+    base_url = os.environ.get("FORESIGHTAI_API_URL")
     if not base_url:
-        raise ValueError("MERIDIAN_API_URL environment variable is required. Set it to your Cloudflare Worker URL.")
+        raise ValueError("FORESIGHTAI_API_URL environment variable is required. Set it to your Cloudflare Worker URL.")
     url = f"{base_url}/events"
 
     if date:
@@ -58,7 +58,7 @@ def get_events(date: str = None):
 
     response = requests.get(
         url,
-        headers={"Authorization": f"Bearer {os.environ.get('MERIDIAN_SECRET_KEY')}"},
+        headers={"Authorization": f"Bearer {os.environ.get('FORESIGHTAI_SECRET_KEY')}"},
     )
     data = response.json()
 

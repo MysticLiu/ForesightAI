@@ -1,4 +1,4 @@
-import { $articles, $sources, inArray } from '@meridian/database';
+import { $articles, $sources, inArray } from '@foresightai/database';
 import { DomainRateLimiter } from '../lib/rateLimiter';
 import { Env } from '../index';
 import { getDb } from '../lib/utils';

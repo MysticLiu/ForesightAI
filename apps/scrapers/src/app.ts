@@ -1,4 +1,4 @@
-import { $articles, $sources, and, gte, lte, isNotNull, eq, not } from '@meridian/database';
+import { $articles, $sources, and, gte, lte, isNotNull, eq, not } from '@foresightai/database';
 import { Env } from './index';
 import { getDb, hasValidAuthToken } from './lib/utils';
 import { Hono } from 'hono';
@@ -89,7 +89,7 @@ const app = new Hono<HonoEnv>()
   })
   .get('/trigger-rss', async c => {
     const token = c.req.query('token');
-    if (token !== c.env.MERIDIAN_SECRET_KEY) {
+    if (token !== c.env.FORESIGHTAI_SECRET_KEY) {
       return c.json({ error: 'Unauthorized' }, 401);
     }
 

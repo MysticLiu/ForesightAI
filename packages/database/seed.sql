@@ -1,4 +1,4 @@
--- Seed file for Meridian RSS sources
+-- Seed file for ForesightAI RSS sources
 -- These are free, open RSS feeds that work well with the light fetch method
 -- scrape_frequency: 1=hourly, 2=4hrs, 3=6hrs, 4=daily
 

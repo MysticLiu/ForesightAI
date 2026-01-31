@@ -14,7 +14,7 @@ export type Env = {
   GOOGLE_API_KEY: string;
   GOOGLE_BASE_URL: string;
 
-  MERIDIAN_SECRET_KEY: string;
+  FORESIGHTAI_SECRET_KEY: string;
 
   // Feature flags
   ENABLE_BROWSER_RENDERING?: string; // Set to "true" to enable paid browser rendering

@@ -1,7 +1,7 @@
 import { Hono } from 'hono';
 import { z } from 'zod';
 import type { HonoEnv } from '../app';
-import { $reports, desc, getDb } from '@meridian/database';
+import { $reports, desc, getDb } from '@foresightai/database';
 import { hasValidAuthToken } from '../lib/utils';
 import { zValidator } from '@hono/zod-validator';
 

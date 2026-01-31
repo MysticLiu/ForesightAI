@@ -1,4 +1,4 @@
-import { getDb } from '@meridian/database';
+import { getDb } from '@foresightai/database';
 import { ensureDate, formatReportDate, generateReportSlug } from '~/server/lib/utils';
 
 export default defineEventHandler(async event => {
