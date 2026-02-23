@@ -1,0 +1,78 @@
+name: Generate Daily Brief
+
+on:
+  schedule:
+    # 07:20 UTC daily, shortly after the 07:00 UTC reporting boundary used by /events.
+    - cron: '20 7 * * *'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Target report date (UTC) in YYYY-MM-DD format. Empty = today UTC.'
+        required: false
+        type: string
+      force:
+        description: 'Generate even if a report already exists for target day.'
+        required: false
+        default: false
+        type: boolean
+      dry_run:
+        description: 'Run full generation but skip publish.'
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: daily-brief-generation
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: apps/briefs/requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r apps/briefs/requirements.txt
+
+      - name: Run daily brief generator
+        env:
+          PYTHONUNBUFFERED: '1'
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GOOGLE_BASE_URL: ${{ secrets.GOOGLE_BASE_URL }}
+          MERIDIAN_SECRET_KEY: ${{ secrets.MERIDIAN_SECRET_KEY }}
+          MERIDIAN_API_URL: ${{ secrets.MERIDIAN_API_URL }}
+          FINAL_BRIEF_MODEL: ${{ vars.FINAL_BRIEF_MODEL }}
+          BRIEF_FALLBACK_MODEL: ${{ vars.BRIEF_FALLBACK_MODEL }}
+          TITLE_MODEL: ${{ vars.TITLE_MODEL }}
+          TLDR_MODEL: ${{ vars.TLDR_MODEL }}
+          EMBEDDING_MODEL_NAME: ${{ vars.EMBEDDING_MODEL_NAME }}
+          MAX_CLUSTERS: ${{ vars.MAX_CLUSTERS }}
+          MAX_ARTICLES_PER_CLUSTER: ${{ vars.MAX_ARTICLES_PER_CLUSTER }}
+          DATE_INPUT: ${{ github.event.inputs.date || '' }}
+          FORCE_INPUT: ${{ github.event.inputs.force || 'false' }}
+          DRY_RUN_INPUT: ${{ github.event.inputs.dry_run || 'false' }}
+        run: |
+          set -euo pipefail
+          args=()
+          if [ -n "${DATE_INPUT}" ]; then
+            args+=(--date "${DATE_INPUT}")
+          fi
+          if [ "${FORCE_INPUT}" = "true" ]; then
+            args+=(--force)
+          fi
+          if [ "${DRY_RUN_INPUT}" = "true" ]; then
+            args+=(--dry-run)
+          fi
+          python apps/briefs/generate_daily_report.py "${args[@]}"
+

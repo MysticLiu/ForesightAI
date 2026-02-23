@@ -1,11 +1,7 @@
-import requests
 import os
-from datetime import date
-from pydantic import BaseModel, field_validator
-from typing import Optional
-import pandas as pd
 from datetime import datetime
-from typing import Optional
+
+import requests
 from pydantic import BaseModel, field_validator
 from dotenv import load_dotenv
 
@@ -46,7 +42,7 @@ class Event(BaseModel):
             return parser.parse(value)
 
 
-def get_events(date: str = None):
+def get_events(date: str | None = None, timeout_seconds: int = 60):
     # MERIDIAN_API_URL is required - set it to your Cloudflare Worker URL
     base_url = os.environ.get("MERIDIAN_API_URL")
     if not base_url:
@@ -59,8 +55,13 @@ def get_events(date: str = None):
     response = requests.get(
         url,
         headers={"Authorization": f"Bearer {os.environ.get('MERIDIAN_SECRET_KEY')}"},
+        timeout=timeout_seconds,
     )
+    response.raise_for_status()
     data = response.json()
+
+    if "sources" not in data or "events" not in data:
+        raise ValueError("Invalid /events response payload: expected 'sources' and 'events' keys.")
 
     sources = [Source(**source) for source in data["sources"]]
     events = [Event(**event) for event in data["events"]]

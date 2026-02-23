@@ -4,16 +4,36 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client = OpenAI(
-    # This is the default and can be omitted
-    api_key=os.environ.get("GOOGLE_API_KEY"),
-    base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
-)
+_client: OpenAI | None = None
+
+
+def get_client() -> OpenAI:
+    global _client
+    if _client is not None:
+        return _client
+
+    google_api_key = os.environ.get("GOOGLE_API_KEY")
+    if not google_api_key:
+        raise ValueError("GOOGLE_API_KEY environment variable is required for brief generation.")
+
+    google_base_url = os.environ.get("GOOGLE_BASE_URL", "").strip()
+    if not google_base_url:
+        google_base_url = "https://generativelanguage.googleapis.com/v1beta/openai/"
+
+    _client = OpenAI(
+        api_key=google_api_key,
+        base_url=google_base_url,
+    )
+    return _client
 
 
 def call_llm(model: str, messages: list[dict], temperature: float = 0):
+    if not model:
+        raise ValueError("Model name is required.")
+    if not messages:
+        raise ValueError("At least one message is required.")
 
-    response = client.chat.completions.create(
+    response = get_client().chat.completions.create(
         model=model,
         messages=messages,
         n=1,

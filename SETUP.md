@@ -189,20 +189,44 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 7.2 Run the Notebook
+### 7.2 Configure Brief Environment
 
 ```bash
-jupyter notebook reportV5.ipynb
+cp .env.example .env
 ```
 
-Or use VS Code with the Jupyter extension.
+Edit `apps/briefs/.env`:
+```env
+GOOGLE_API_KEY="your-gemini-api-key"
+GOOGLE_BASE_URL="https://generativelanguage.googleapis.com/v1beta/openai/"
+MERIDIAN_SECRET_KEY="your-generated-secret"
+MERIDIAN_API_URL="http://localhost:8787"
+```
 
-**Run all cells** - this will:
+### 7.3 Run Production Generator Locally
+
+```bash
+python generate_daily_report.py
+```
+
+Optional flags:
+```bash
+# Force regeneration even if today's report already exists
+python generate_daily_report.py --force
+
+# Dry run (no publish)
+python generate_daily_report.py --dry-run
+
+# Generate for a specific UTC date
+python generate_daily_report.py --date 2026-02-23
+```
+
+This will:
 1. Fetch processed articles from the API
 2. Generate embeddings using a local model
 3. Cluster articles by topic
-4. Generate analysis with Gemini
-5. Create the final markdown brief
+4. Generate the final brief with Gemini
+5. Generate title + continuity TLDR
 6. POST it to your worker API
 
 ---
@@ -238,6 +262,25 @@ The frontend can be deployed to:
 - **Cloudflare Pages** (free)
 - **Vercel** (free tier)
 - **Netlify** (free tier)
+
+### Automate Daily Brief Generation (GitHub Actions)
+
+This repo includes `.github/workflows/generate-daily-brief.yaml` which runs daily at **07:20 UTC**.
+
+Add these GitHub secrets:
+- `GOOGLE_API_KEY`
+- `GOOGLE_BASE_URL`
+- `MERIDIAN_SECRET_KEY`
+- `MERIDIAN_API_URL` (your deployed worker base URL, e.g. `https://your-worker.workers.dev`)
+
+Optional GitHub repository variables:
+- `FINAL_BRIEF_MODEL`
+- `BRIEF_FALLBACK_MODEL`
+- `TITLE_MODEL`
+- `TLDR_MODEL`
+- `EMBEDDING_MODEL_NAME`
+- `MAX_CLUSTERS`
+- `MAX_ARTICLES_PER_CLUSTER`
 
 ---
 
